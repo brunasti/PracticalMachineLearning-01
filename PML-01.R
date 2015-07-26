@@ -32,6 +32,19 @@ nonNAs <- function(x) {
   as.vector(apply(x, 2, function(x) length(which(!is.na(x)))))
 }
 
+# write the files with the results
+pml_write_files = function(x){
+  n = length(x)
+  for(i in 1:n){
+    filename = paste0("problem_id_",i,".txt")
+    write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+  }
+}
+
+
+
+
+
 # Cleaning data
 # Build vector of missing data or columns to drop.
 colcnts <- nonNAs(df_training)
@@ -102,8 +115,9 @@ print(confusionMatrix(predictions, df_small_testing$classe), digits=4)
 
 # Run against 20 testing set provided
 print("Predict: ")
-print(predict(modFit, newdata=df_testing))
+answers = predict(modFit, newdata=df_testing)
+print(answers)
 
-
+pml_write_files(answers)
 
 
