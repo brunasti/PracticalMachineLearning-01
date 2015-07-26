@@ -79,6 +79,12 @@ inTrain <- createDataPartition(y=df_small1$classe, p=0.7, list=FALSE)
 df_small_training <- df_small1[inTrain,]
 df_small_testing <- df_small1[-inTrain,]
 
+print("Analazyng: ")
+
+modFit <- train(df_small_training1$classe ~ ., data = df_small_training1, method="rpart")
+print(modFit, digits=3)
+print(modFit$finalModel, digits=3)
+fancyRpartPlot(modFit$finalModel)
 
 print("Training: ")
 
@@ -92,10 +98,6 @@ predictions <- predict(modFit, newdata=df_small_testing)
 print(confusionMatrix(predictions, df_small_testing$classe), digits=4)
 #predictions <- predict(modFit, newdata=df_testing)
 #print(confusionMatrix(predictions, df_testing$classe), digits=4)
-
-# Reporting
-print(modFit$finalModel, digits=3)
-fancyRpartPlot(modFit$finalModel)
 
 
 # Run against 20 testing set provided

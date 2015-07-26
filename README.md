@@ -155,8 +155,48 @@ Train on training set with both preprocessing and cross validation.
 
 This is the diagram of the prediction tree:
 
-![RPlot.png)(https://github.com/brunasti/PracticalMachineLearning-01/blob/master/Rplot.png "Rplot.png")
+![RPlot.png](https://github.com/brunasti/PracticalMachineLearning-01/blob/master/Rplot.png "Rplot.png")
+
+And this is the model fit:
+
+```   
+CART 
+
+3437 samples
+  52 predictor
+   5 classes: 'A', 'B', 'C', 'D', 'E' 
+
+No pre-processing
+Resampling: Bootstrapped (25 reps) 
+
+Summary of sample sizes: 3437, 3437, 3437, 3437, 3437, 3437, ... 
+
+Resampling results across tuning parameters:
+
+  cp      Accuracy  Kappa   Accuracy SD  Kappa SD
+  0.0297  0.541     0.4123  0.0503       0.0801  
+  0.0482  0.469     0.3027  0.0651       0.1131  
+  0.1142  0.320     0.0517  0.0377       0.0597  
+
+Accuracy was used to select the optimal model using  the largest value.
+The final value used for the model was cp = 0.0297. 
+n= 3437 
+
+node), split, n, loss, yval, (yprob)
+      * denotes terminal node
+
+ 1) root 3437 2460 A (0.28 0.19 0.17 0.16 0.18)  
+   2) roll_belt< 130 3154 2180 A (0.31 0.21 0.19 0.18 0.11)  
+     4) pitch_forearm< -34.2 272    1 A (1 0.0037 0 0 0) *
+     5) pitch_forearm>=-34.2 2882 2180 A (0.24 0.23 0.21 0.2 0.12)  
+      10) magnet_dumbbell_y< 424 2383 1700 A (0.29 0.17 0.24 0.19 0.11)  
+        20) roll_forearm< 120 1438  831 A (0.42 0.16 0.2 0.16 0.06) *
+        21) roll_forearm>=120 945  650 C (0.078 0.18 0.31 0.25 0.19) *
+      11) magnet_dumbbell_y>=424 499  238 B (0.048 0.52 0.042 0.21 0.18) *
+   3) roll_belt>=130 283    1 E (0.0035 0 0 0 1) *
+```
+
 
 I received these predictions by appling the chosen model for the 20 items of the final training set:
 
- B A A A A E D D A A B C B A E E A B B B
+B A A A A E D D A A B C B A E E A B A B
