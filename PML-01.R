@@ -93,6 +93,10 @@ print(confusionMatrix(predictions, df_small_testing$classe), digits=4)
 #predictions <- predict(modFit, newdata=df_testing)
 #print(confusionMatrix(predictions, df_testing$classe), digits=4)
 
+# Reporting
+print(modFit$finalModel, digits=3)
+fancyRpartPlot(modFit$finalModel)
+
 
 # Run against 20 testing set provided
 print("Predict: ")
